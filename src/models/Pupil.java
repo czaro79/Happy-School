@@ -1,9 +1,6 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Pupil {
     private String pupilFirstName;
@@ -22,17 +19,11 @@ public class Pupil {
         this.pupilMarks = new HashMap<Subject, ArrayList<Double>>();
 
         this.pupilMarks.put(Subject.ENGLISH, new ArrayList<Double>());
-        this.pupilMarks.put(Subject.BIOLOGY,new ArrayList<Double>());
+        this.pupilMarks.put(Subject.BIOLOGY, new ArrayList<Double>());
         this.pupilMarks.put(Subject.MATHEMATICS, new ArrayList<Double>());
         this.pupilMarks.put(Subject.FRENCH, new ArrayList<Double>());
         this.pupilMarks.put(Subject.PHYSICS, new ArrayList<Double>());
         this.pupilMarks.put(Subject.CHEMISTRY, new ArrayList<Double>());
-    }
-
-    public Pupil(Pupil source) {
-        this.pupilFirstName = source.pupilFirstName;
-        this.pupilLastName = source.pupilLastName;
-        this.pupilMarks = (HashMap<Subject, ArrayList<Double>>) Map.copyOf(source.pupilMarks);
     }
 
     public String getPupilFirstName() {
@@ -57,10 +48,27 @@ public class Pupil {
         this.pupilLastName = pupilLastName;
     }
 
+    public void addMark(Subject subject, double mark) {
+        this.pupilMarks.get(subject).add(mark);
+    }
+
+    public double getAverageGrade(Subject subject) {
+        if (this.pupilMarks.get(subject).isEmpty()) {
+            throw new IllegalStateException("Cannot calculate average grade - no marks yet.");
+        }
+        double sumOfMarks = 0;
+        double numberOfMarks = this.pupilMarks.get(subject).size();
+        for (int i = 0; i < numberOfMarks; i++) {
+            sumOfMarks += this.pupilMarks.get(subject).get(0);
+        }
+        return sumOfMarks / numberOfMarks;
+
+    }
+
     public String toString() {
         String temp = "Pupil: " + getPupilFirstName() + " " + getPupilLastName() + "\n";
         int firstLineLength = temp.length();
-        for (int i = 0; i < firstLineLength; i++) {
+        for (int i = 1; i < firstLineLength; i++) {
             temp += "-";
         }
         temp += "\n";
