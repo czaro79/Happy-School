@@ -18,7 +18,7 @@ public class Main {
         Pupil pupil = new Pupil("Czarek Drobiazg", tableOfLogs);
 
         System.out.println(pupil);
-
+        pupil.setPupilName("");
         System.out.println(pupil.getPupilName());
     }
 }
