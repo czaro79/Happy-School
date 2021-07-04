@@ -26,6 +26,19 @@ public class Pupil {
         this.pupilMarks.put(Subject.CHEMISTRY, new ArrayList<Double>());
     }
 
+    public Pupil(Pupil source) {
+        this.pupilFirstName = source.pupilFirstName;
+        this.pupilLastName = source.pupilLastName;
+
+        this.pupilMarks = new HashMap<Subject, ArrayList<Double>>();
+        this.pupilMarks.put(Subject.ENGLISH, (ArrayList<Double>) source.pupilMarks.get(Subject.ENGLISH).clone());
+        this.pupilMarks.put(Subject.BIOLOGY, (ArrayList<Double>) source.pupilMarks.get(Subject.BIOLOGY).clone());
+        this.pupilMarks.put(Subject.MATHEMATICS, (ArrayList<Double>) source.pupilMarks.get(Subject.MATHEMATICS).clone());
+        this.pupilMarks.put(Subject.FRENCH, (ArrayList<Double>) source.pupilMarks.get(Subject.FRENCH).clone());
+        this.pupilMarks.put(Subject.PHYSICS, (ArrayList<Double>) source.pupilMarks.get(Subject.PHYSICS).clone());
+        this.pupilMarks.put(Subject.CHEMISTRY, (ArrayList<Double>) source.pupilMarks.get(Subject.CHEMISTRY).clone());
+    }
+
     public String getPupilFirstName() {
         return pupilFirstName;
     }
@@ -63,6 +76,10 @@ public class Pupil {
         }
         return sumOfMarks / numberOfMarks;
 
+    }
+
+    public boolean equals(Pupil object) {
+        return this.pupilFirstName.equalsIgnoreCase(object.getPupilFirstName()) && this.pupilLastName.equalsIgnoreCase(object.getPupilLastName());
     }
 
     public String toString() {

@@ -1,18 +1,28 @@
 package com.czarek.learning.java.SPOJ;
 
+import models.ClassRoom;
 import models.Pupil;
-import models.Subject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Main {
 
     public static void main(String[] args) {
         Pupil pupil = new Pupil("Cezary","Drobiazg");
+        Pupil pupil1 = new Pupil(pupil);
+        Pupil pupil2 = pupil;
+        pupil1.setPupilFirstName("Pawel");
 
-        pupil.addMark(Subject.MATHEMATICS, 4.5);
-        pupil.addMark(Subject.MATHEMATICS, 3);
-        pupil.addMark(Subject.BIOLOGY, 6);
-        System.out.println(pupil);
-        System.out.println(pupil.getAverageGrade(Subject.FRENCH));
+        ClassRoom classRoom = new ClassRoom();
+        classRoom.addPupil(pupil);
+
+        classRoom.addPupil(pupil2);
+
+        System.out.println(pupil.equals(pupil1));
+        classRoom.removePupil("Cezary", "Drobiazg");
+        classRoom.removePupil("Tomasz" ,"Kkk");
 
     }
 }
