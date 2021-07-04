@@ -1,4 +1,3 @@
-Cezary Drobiazg,Alicja Drobiazg,Monika Drobiazg,Piotr Muszynski,Krzysztof Poniewozik,Dorota Rusak,Pawel Gruszynski,Irena Santor,Beata Kozidrak,Krzysztof Cugowski
-Anatol Kiol,Sebastian Hulk,Igor Batman,Anna Superman,Eliza Bingo,Arleta Kojok,Simon Collins,Wojciech Wigor,Patrycja Kosiarkiewicz
-Kola Borys,Beata Jugot,Pawel Gawrys,Grazyna Golinska,Anatol Gulek,Bartosz Wojna,Paula Nicon,Patrycja Drwal,Danuta Paszkowska,Dymitr Dajlido
-Pawel Rutyna,Eliza Depresja,Grazyna Paskuda,Karol Zlosliwiec,Piotrek Smrodek,Michal Kaleka,Wojciech Lamaga,Cezary Pieknis
+Alojzy Mol,Cezary Drobiazg,Alicja Drobiazg,Monika Drobiazg
+Piotr Muszynski,Krzysztof Poniewozik,Dorota Rusak
+Pawel Gruszynski,Irena Santor,Beata Kozidrak,Krzysztof Cugowski

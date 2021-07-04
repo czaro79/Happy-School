@@ -1,6 +1,9 @@
 package models;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ClassRoom {
     ArrayList<Pupil> pupils;
@@ -11,11 +14,18 @@ public class ClassRoom {
 
     public void addPupil(Pupil pupil) {
         if (!this.containsPupil(pupil)) {
-            this.pupils.add(new Pupil(pupil));
-            System.out.println("\nPupil added!\n");
-        } else {
-            System.out.println("Cannot add - a pupil is in a list.");
+            this.pupils.add(pupil);
         }
+    }
+
+    public Pupil getPupil(String pupilFirstName, String pupilLastName) {
+
+        for (Pupil pupil : this.pupils) {
+            if (pupil.equals(pupilFirstName, pupilLastName)) {
+                return new Pupil(pupil);
+            }
+        }
+        return null;
     }
 
     public boolean containsPupil(Pupil object) {
@@ -42,12 +52,12 @@ public class ClassRoom {
     }
 
     public void removePupil(String pupilFirstName, String pupilLastName) {
-//        if (pupilFirstName == null || pupilFirstName.isBlank()) {
-//            throw new IllegalArgumentException("Pupil first name cannot be null/blank.");
-//        }
-//        if (pupilLastName == null || pupilLastName.isBlank()) {
-//            throw new IllegalArgumentException("Pupil last name cannot be null/blank.");
-//        }
+        if (pupilFirstName == null || pupilFirstName.isBlank()) {
+            throw new IllegalArgumentException("Pupil first name cannot be null/blank.");
+        }
+        if (pupilLastName == null || pupilLastName.isBlank()) {
+            throw new IllegalArgumentException("Pupil last name cannot be null/blank.");
+        }
         for (int i = 0; i < this.pupils.size(); i++) {
             if (this.pupils.get(i).getPupilFirstName().equalsIgnoreCase(pupilFirstName) && this.pupils.get(i).getPupilLastName().equalsIgnoreCase(pupilLastName)) {
                 this.pupils.remove(i);
@@ -55,4 +65,42 @@ public class ClassRoom {
             }
         }
     }
+
+
+
+    public void makeTest(Subject subject) {
+
+        for (Pupil pupil : this.pupils) {
+            pupil.addMark(subject, pupil.randomMark());
+        }
+    }
+
+    public void loadPupils() throws FileNotFoundException {
+
+        FileInputStream fis = new FileInputStream("src/models/pupils.txt");
+        Scanner scan = new Scanner(fis);
+
+        while (scan.hasNextLine()) {
+            String[] pupilsNames = scan.nextLine().split(",");
+            for (String pupilsName : pupilsNames) {
+                String[] pupilName = pupilsName.split(" ");
+                this.addPupil(new Pupil(pupilName[0], pupilName[1]));
+            }
+        }
+        scan.close();
+    }
+
+    public String toString() {
+        String temp = "";
+
+        for (Pupil pupil : this.pupils) {
+            temp += pupil.toString();
+        }
+
+        return temp;
+    }
+
+
+
+
 }

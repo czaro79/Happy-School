@@ -82,6 +82,42 @@ public class Pupil {
         return this.pupilFirstName.equalsIgnoreCase(object.getPupilFirstName()) && this.pupilLastName.equalsIgnoreCase(object.getPupilLastName());
     }
 
+    public boolean equals(String pupilFirstName, String pupilLastName) {
+        if (pupilFirstName == null || pupilFirstName.isBlank()) {
+            throw new IllegalArgumentException("Pupil first name cannot be null/blank.");
+        }
+        if (pupilLastName == null || pupilLastName.isBlank()) {
+            throw new IllegalArgumentException("Pupil last name cannot be null/blank.");
+        }
+        return this.pupilFirstName.equalsIgnoreCase(pupilFirstName) && this.pupilLastName.equalsIgnoreCase(pupilLastName);
+    }
+
+    public void addSomeMarksSubject(Subject subject) {
+
+        int marksNumber = randomMarkNumber();
+
+        for (int i = 0; i <= marksNumber; i++) {
+            this.pupilMarks.get(subject).add(randomMark());
+        }
+    }
+
+    public void updateMarks() {
+        this.addSomeMarksSubject(Subject.BIOLOGY);
+        this.addSomeMarksSubject(Subject.CHEMISTRY);
+        this.addSomeMarksSubject(Subject.ENGLISH);
+        this.addSomeMarksSubject(Subject.FRENCH);
+        this.addSomeMarksSubject(Subject.MATHEMATICS);
+        this.addSomeMarksSubject(Subject.PHYSICS);
+    }
+
+    public double randomMark() {
+        return Math.round(Math.random() * 5 + 1);
+    }
+
+    private int randomMarkNumber() {
+        return (int) (Math.round(Math.random() * 4));
+    }
+
     public String toString() {
         String temp = "Pupil: " + getPupilFirstName() + " " + getPupilLastName() + "\n";
         int firstLineLength = temp.length();
