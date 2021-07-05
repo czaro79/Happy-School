@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClassRoom {
-    ArrayList<Pupil> pupils;
+    public static ArrayList<Pupil> pupils;
 
     public ClassRoom() {
-        this.pupils = new ArrayList<>();
+        pupils = new ArrayList<>();
     }
 
     public void addPupil(Pupil pupil) {
         if (!this.containsPupil(pupil)) {
-            this.pupils.add(pupil);
+            pupils.add(pupil);
         }
     }
 
     public Pupil getPupil(String pupilFirstName, String pupilLastName) {
 
-        for (Pupil pupil : this.pupils) {
+        for (Pupil pupil : pupils) {
             if (pupil.equals(pupilFirstName, pupilLastName)) {
                 return new Pupil(pupil);
             }
@@ -28,11 +28,19 @@ public class ClassRoom {
         return null;
     }
 
+    public Pupil getPupil(int index) {
+        return pupils.get(index);
+    }
+
+    public int pupilsSize() {
+        return pupils.size();
+    }
+
     public boolean containsPupil(Pupil object) {
         if (object == null) {
             throw new IllegalArgumentException("Illegal null value to check pupil in the classroom.");
         }
-        for (Pupil pupil : this.pupils) {
+        for (Pupil pupil : pupils) {
             return pupil.getPupilFirstName().equalsIgnoreCase(object.getPupilFirstName()) && pupil.getPupilLastName().equalsIgnoreCase(object.getPupilLastName());
         }
         return false;
@@ -45,7 +53,7 @@ public class ClassRoom {
         if (pupilLastName == null || pupilLastName.isBlank()) {
             throw new IllegalArgumentException("Pupil last name cannot be null/blank.");
         }
-        for (Pupil pupil : this.pupils) {
+        for (Pupil pupil : pupils) {
             return pupil.getPupilFirstName().equalsIgnoreCase(pupilFirstName) && pupil.getPupilLastName().equalsIgnoreCase(pupilLastName);
         }
         return false;
@@ -58,9 +66,9 @@ public class ClassRoom {
         if (pupilLastName == null || pupilLastName.isBlank()) {
             throw new IllegalArgumentException("Pupil last name cannot be null/blank.");
         }
-        for (int i = 0; i < this.pupils.size(); i++) {
-            if (this.pupils.get(i).getPupilFirstName().equalsIgnoreCase(pupilFirstName) && this.pupils.get(i).getPupilLastName().equalsIgnoreCase(pupilLastName)) {
-                this.pupils.remove(i);
+        for (int i = 0; i < pupils.size(); i++) {
+            if (pupils.get(i).getPupilFirstName().equalsIgnoreCase(pupilFirstName) && pupils.get(i).getPupilLastName().equalsIgnoreCase(pupilLastName)) {
+                pupils.remove(i);
                 System.out.println("\nPupil removed from the list.\n");
             }
         }
@@ -70,7 +78,7 @@ public class ClassRoom {
 
     public void makeTest(Subject subject) {
 
-        for (Pupil pupil : this.pupils) {
+        for (Pupil pupil : pupils) {
             pupil.addMark(subject, pupil.randomMark());
         }
     }
@@ -93,7 +101,7 @@ public class ClassRoom {
     public String toString() {
         String temp = "";
 
-        for (Pupil pupil : this.pupils) {
+        for (Pupil pupil : pupils) {
             temp += pupil.toString();
         }
 

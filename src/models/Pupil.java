@@ -92,7 +92,7 @@ public class Pupil {
         return this.pupilFirstName.equalsIgnoreCase(pupilFirstName) && this.pupilLastName.equalsIgnoreCase(pupilLastName);
     }
 
-    public void addSomeMarksSubject(Subject subject) {
+    private void addSomeMarksSubject(Subject subject) {
 
         int marksNumber = randomMarkNumber();
 
