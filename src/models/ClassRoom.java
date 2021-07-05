@@ -74,7 +74,12 @@ public class ClassRoom {
         }
     }
 
-
+    public void updateClass() {
+        for (Pupil pupil : pupils
+        ) {
+            pupil.updateMarks();
+        }
+    }
 
     public void makeTest(Subject subject) {
 
@@ -107,8 +112,6 @@ public class ClassRoom {
 
         return temp;
     }
-
-
 
 
 }
